@@ -129,27 +129,28 @@ function CustomTooltip({ active, payload, label }: any) {
 // ─── Dashboard ────────────────────────────────────────────────────────────────
 
 export default function Dashboard() {
-  // Dados para gráfico de variação mensal por produto
+  // Dados para gráfico de variação mensal por produto - TODOS OS 15 PRODUTOS
   const dadosVariacaoMensal = useMemo(() =>
     produtos
       .filter((p, i, arr) => arr.findIndex(x => x.nome === p.nome) === i) // dedup por nome
       .sort((a, b) => b.variacaoMensal - a.variacaoMensal)
-      .slice(0, 8)
       .map((p) => ({
-        nome: p.nome.split(' ').slice(0, 2).join(' '),
+        nome: p.nome,
         variacao: p.variacaoMensal,
         risco: p.nivelRisco,
       })),
     []
   );
 
-  // Dados para gráfico de índices
+  // Dados para gráfico de índices - REMOVIDO IPCA-RS (mantendo apenas índices nacionais no gráfico de barras do dashboard)
   const dadosIndices = useMemo(() =>
-    indices.map((idx) => ({
-      sigla: idx.sigla,
-      acumulado: idx.variacaoAcumulada12m,
-      mensal: idx.variacaoMensal,
-    })),
+    indices
+      .filter(idx => ['IGP-M', 'FIPE-Alim'].includes(idx.sigla))
+      .map((idx) => ({
+        sigla: idx.sigla,
+        acumulado: idx.variacaoAcumulada12m,
+        mensal: idx.variacaoMensal,
+      })),
     []
   );
 
@@ -223,11 +224,11 @@ export default function Dashboard() {
               <p className="text-xs text-gray-400">Março/2026 — ordenado por variação</p>
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={240}>
+          <ResponsiveContainer width="100%" height={400}>
             <BarChart data={dadosVariacaoMensal} layout="vertical" margin={{ left: 8, right: 24, top: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" horizontal={false} />
               <XAxis type="number" tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={(v) => `${v}%`} />
-              <YAxis type="category" dataKey="nome" tick={{ fontSize: 11, fill: '#374151' }} width={90} />
+              <YAxis type="category" dataKey="nome" tick={{ fontSize: 10, fill: '#374151' }} width={120} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="variacao" name="Variação" radius={[0, 4, 4, 0]}>
                 {dadosVariacaoMensal.map((entry, index) => (
@@ -255,7 +256,7 @@ export default function Dashboard() {
               <p className="text-xs text-gray-400">Acumulado 12 meses vs. variação mensal</p>
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={240}>
+          <ResponsiveContainer width="100%" height={400}>
             <BarChart data={dadosIndices} margin={{ left: 0, right: 8, top: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" />
               <XAxis dataKey="sigla" tick={{ fontSize: 11, fill: '#374151' }} />
@@ -294,46 +295,24 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {rankingRisco.slice(0, 6).map((item) => (
+              {rankingRisco.map((item) => (
                 <tr key={item.posicao} className="border-b border-border/50 hover:bg-gray-50 transition-colors">
-                  <td className="py-2.5 px-3 font-bold text-gray-400">{item.posicao}</td>
-                  <td className="py-2.5 px-3 font-semibold text-gray-800">{item.produto}</td>
-                  <td className="py-2.5 px-3 text-right">
-                    <div className="font-mono-data font-semibold text-gray-700">{formatBRL(item.precoAtual)}</div>
-                    <div className="text-[10px] text-gray-400">por {item.unidade}</div>
-                  </td>
-                  <td className="py-2.5 px-3 text-right font-mono-data font-semibold" style={{ color: RISK_COLORS[item.nivelRisco] }}>
+                  <td className="py-2 px-3 font-bold text-gray-400">{item.posicao}</td>
+                  <td className="py-2 px-3 font-bold text-gray-900">{item.produto}</td>
+                  <td className="py-2 px-3 text-right font-mono-data">{formatBRL(item.precoAtual)}</td>
+                  <td className={cn("py-2 px-3 text-right font-mono-data font-bold", item.variacaoTrimestral > 0 ? "text-red-600" : "text-green-600")}>
                     {formatPct(item.variacaoTrimestral)}
                   </td>
-                  <td className="py-2.5 px-3 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <div className="w-16 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-                        <div
-                          className="h-full rounded-full transition-all"
-                          style={{
-                            width: `${item.scoreRisco}%`,
-                            background: RISK_COLORS[item.nivelRisco],
-                          }}
-                        />
-                      </div>
-                      <span className="font-mono-data font-semibold text-gray-700 w-6 text-right">{item.scoreRisco}</span>
-                    </div>
-                  </td>
-                  <td className="py-2.5 px-3 text-center">
-                    <span
-                      className="px-2 py-0.5 rounded-full text-xs font-semibold"
-                      style={{
-                        background: RISK_BG[item.nivelRisco],
-                        color: RISK_COLORS[item.nivelRisco],
-                        border: `1px solid ${RISK_COLORS[item.nivelRisco]}40`,
-                      }}
+                  <td className="py-2 px-3 text-right font-mono-data">{item.scoreRisco}</td>
+                  <td className="py-2 px-3 text-center">
+                    <span 
+                      className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase"
+                      style={{ background: RISK_BG[item.nivelRisco], color: RISK_COLORS[item.nivelRisco] }}
                     >
-                      {RISK_LABELS[item.nivelRisco]}
+                      {item.nivelRisco}
                     </span>
                   </td>
-                  <td className="py-2.5 px-3 text-left text-gray-400 italic">
-                    {item.fonte}
-                  </td>
+                  <td className="py-2 px-3 text-gray-400 italic">{item.fonte}</td>
                 </tr>
               ))}
             </tbody>

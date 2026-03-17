@@ -46,18 +46,6 @@ export default function IndicesEconomicos() {
     []
   );
 
-  // Dados para comparação de índices nacionais
-  const dadosNacionais = useMemo(() => 
-    indices.filter(idx => !idx.nome.includes('—'))
-      .map(idx => ({
-        nome: idx.nome,
-        sigla: idx.sigla,
-        mensal: idx.variacaoMensal,
-        acumulado: idx.variacaoAcumulada12m
-      })),
-    []
-  );
-
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header de Contexto */}
@@ -75,85 +63,114 @@ export default function IndicesEconomicos() {
         </div>
       </div>
 
-      {/* Grid de Cards de Índices */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {indices.filter(idx => ['IPCA-Alim', 'IGP-M', 'FIPE-Alim'].includes(idx.sigla)).map((idx) => (
-          <div key={idx.sigla} className="bg-white p-5 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <span className="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-bold rounded uppercase tracking-wider">
-                {idx.sigla}
-              </span>
-              <span className="text-[10px] text-gray-400 font-medium flex items-center gap-1">
-                <Calendar size={10} /> {idx.periodo}
-              </span>
-            </div>
-            <div className="mb-4">
-              <div className="text-3xl font-bold text-gray-900 font-mono-data">
-                {idx.variacaoAcumulada12m.toFixed(2)}%
+      {/* Seção IPCA Alimentação - Regional (Conforme Imagem) */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2 px-1">
+          <div className="w-1 h-4 bg-blue-600 rounded-full"></div>
+          <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">IPCA Alimentação</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {indices.filter(idx => idx.sigla.startsWith('IPCA')).map((idx) => (
+            <div key={idx.sigla} className="bg-white p-5 rounded-xl border-2 border-blue-900/10 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-1 h-full bg-blue-900"></div>
+              <div className="flex justify-between items-start mb-4">
+                <span className="text-xs font-bold text-gray-400 uppercase">
+                  {idx.nome.split('—')[1]?.trim()}
+                </span>
+                <span className="text-[10px] text-gray-400 font-medium flex items-center gap-1">
+                  Mensal
+                </span>
               </div>
-              <div className="text-xs text-gray-500 mt-1">Acumulado 12 meses</div>
-            </div>
-            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-              <div className="text-xs font-medium text-gray-600">Variação Mensal</div>
-              <div className={`flex items-center gap-1 text-sm font-bold ${idx.variacaoMensal > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                {idx.variacaoMensal > 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
-                {formatPct(idx.variacaoMensal)}
+              <div className="flex items-end justify-between">
+                <div>
+                  <div className="text-3xl font-bold text-gray-900 font-mono-data">
+                    {idx.variacaoAcumulada12m.toFixed(2)}%
+                  </div>
+                  <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">
+                    Acumulado 12 meses — {idx.periodo}
+                  </div>
+                </div>
+                <div className={`flex items-center gap-0.5 text-sm font-bold ${idx.variacaoMensal > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                  {idx.variacaoMensal > 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                  {idx.variacaoMensal.toFixed(2)}%
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Comparativo Regional IPCA */}
-        <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
-          <div className="flex items-center gap-2 mb-6">
-            <MapPin size={18} className="text-blue-600" />
-            <h3 className="font-bold text-gray-900">IPCA Alimentação por Região (Sul)</h3>
+      {/* Seção IGP-M e FIPE */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* IGP-M */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 px-1">
+            <div className="w-1 h-4 bg-orange-500 rounded-full"></div>
+            <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">IGP-M (FGV)</h3>
           </div>
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={dadosIPCA} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="regiao" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={(v) => `${v}%`} />
-                <Tooltip 
-                  cursor={{ fill: '#f9fafb' }}
-                  contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                />
-                <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ paddingBottom: '20px', fontSize: '12px' }} />
-                <Bar name="Acumulado 12m" dataKey="acumulado" fill="#003770" radius={[4, 4, 0, 0]} barSize={40} />
-                <Bar name="Mensal" dataKey="mensal" fill="#EE7D00" radius={[4, 4, 0, 0]} barSize={40} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          {indices.filter(idx => idx.sigla === 'IGP-M').map((idx) => (
+            <div key={idx.sigla} className="bg-white p-5 rounded-xl border border-border shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <div className="text-3xl font-bold text-gray-900 font-mono-data">
+                  {idx.variacaoAcumulada12m.toFixed(2)}%
+                </div>
+                <div className={`flex items-center gap-1 text-sm font-bold ${idx.variacaoMensal > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                  {idx.variacaoMensal > 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                  {formatPct(idx.variacaoMensal)} (Mensal)
+                </div>
+              </div>
+              <div className="text-xs text-gray-500">Acumulado 12 meses — {idx.periodo}</div>
+            </div>
+          ))}
         </div>
 
-        {/* Análise Técnica */}
-        <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
-          <div className="flex items-center gap-2 mb-4">
-            <Info size={18} className="text-blue-600" />
-            <h3 className="font-bold text-gray-900">Análise Técnica dos Índices</h3>
+        {/* FIPE */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 px-1">
+            <div className="w-1 h-4 bg-green-600 rounded-full"></div>
+            <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">FIPE Alimentação</h3>
           </div>
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-600">
-              <h4 className="text-sm font-bold text-gray-900 mb-1">IPCA Alimentação (IBGE)</h4>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Reflete a variação de preços para o consumidor final. No Sul, o índice acumula alta de <strong>8,12%</strong>, impulsionado por proteínas e hortifruti. É o principal balizador para reajustes de contratos de alimentação.
-              </p>
+          {indices.filter(idx => idx.sigla === 'FIPE-Alim').map((idx) => (
+            <div key={idx.sigla} className="bg-white p-5 rounded-xl border border-border shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <div className="text-3xl font-bold text-gray-900 font-mono-data">
+                  {idx.variacaoAcumulada12m.toFixed(2)}%
+                </div>
+                <div className={`flex items-center gap-1 text-sm font-bold ${idx.variacaoMensal > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                  {idx.variacaoMensal > 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                  {formatPct(idx.variacaoMensal)} (Mensal)
+                </div>
+              </div>
+              <div className="text-xs text-gray-500">Acumulado 12 meses — {idx.periodo}</div>
             </div>
-            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-orange-500">
-              <h4 className="text-sm font-bold text-gray-900 mb-1">IGP-M (FGV)</h4>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                O "índice do aluguel" também é sensível aos preços no atacado (IPA). A variação de <strong>0,45%</strong> no mês indica uma pressão moderada nos custos logísticos e de infraestrutura.
-              </p>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-green-600">
-              <h4 className="text-sm font-bold text-gray-900 mb-1">FIPE Alimentação</h4>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Focado na região de São Paulo, mas serve como termômetro para tendências nacionais. A alta de <strong>0,72%</strong> sinaliza que a pressão inflacionária nos alimentos continua disseminada.
-              </p>
-            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Análise Técnica */}
+      <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
+        <div className="flex items-center gap-2 mb-4">
+          <Info size={18} className="text-blue-600" />
+          <h3 className="font-bold text-gray-900">Análise Técnica dos Índices</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-600">
+            <h4 className="text-sm font-bold text-gray-900 mb-1">IPCA Alimentação (IBGE)</h4>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Reflete a variação de preços para o consumidor final. No Sul, o índice acumula alta média de <strong>8,12%</strong>, impulsionado por proteínas e hortifruti. É o principal balizador para reajustes de contratos de alimentação.
+            </p>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-orange-500">
+            <h4 className="text-sm font-bold text-gray-900 mb-1">IGP-M (FGV)</h4>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              O "índice do aluguel" também é sensível aos preços no atacado (IPA). A variação de <strong>0,45%</strong> no mês indica uma pressão moderada nos custos logísticos e de infraestrutura.
+            </p>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-green-600">
+            <h4 className="text-sm font-bold text-gray-900 mb-1">FIPE Alimentação</h4>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Focado na região de São Paulo, mas serve como termômetro para tendências nacionais. A alta de <strong>0,72%</strong> sinaliza que a pressão inflacionária nos alimentos continua disseminada.
+            </p>
           </div>
         </div>
       </div>

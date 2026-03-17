@@ -57,10 +57,9 @@ export interface AlertaInflacao {
   ativo: boolean;
 }
 
-// ─── PRODUTOS MONITORADOS ─────────────────────────────────────────────────────
+// ─── PRODUTOS MONITORADOS (15 PRODUTOS) ───────────────────────────────────────
 
 export const produtos: ProdutoMonitorado[] = [
-  // Proteínas
   {
     id: 'carne-bovina-rs',
     nome: 'Carne Bovina (Traseiro)',
@@ -133,7 +132,6 @@ export const produtos: ProdutoMonitorado[] = [
     fonte: 'CEPEA',
     ultimaAtualizacao: '2026-03-16',
   },
-  // Grãos e Secos
   {
     id: 'arroz-rs',
     nome: 'Arroz Parboilizado',
@@ -172,7 +170,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'milho-rs',
-    nome: 'Milho em Grão',
+    nome: 'Milho',
     categoria: 'Grãos e Secos',
     unidade: 'kg',
     precoAtual: 1.17,
@@ -206,7 +204,6 @@ export const produtos: ProdutoMonitorado[] = [
     fonte: 'CEPEA',
     ultimaAtualizacao: '2026-03-16',
   },
-  // Hortifruti - Top 5 RS
   {
     id: 'batata-rs',
     nome: 'Batata Inglesa',
@@ -297,84 +294,9 @@ export const produtos: ProdutoMonitorado[] = [
     fonte: 'CEASA-RS',
     ultimaAtualizacao: '2026-03-16',
   },
-  // Hortifruti - SC
-  {
-    id: 'batata-sc',
-    nome: 'Batata Inglesa',
-    categoria: 'Hortifruti',
-    unidade: 'kg',
-    precoAtual: 5.40,
-    precoAnterior: 4.70,
-    variacaoDiaria: 1.1,
-    variacaoMensal: 14.9,
-    variacaoTrimestral: 24.8,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 84,
-    volatilidade: 78,
-    estado: 'SC',
-    fonte: 'CEASA-SC',
-    ultimaAtualizacao: '2026-03-16',
-  },
-  {
-    id: 'tomate-sc',
-    nome: 'Tomate Saladete',
-    categoria: 'Hortifruti',
-    unidade: 'kg',
-    precoAtual: 7.60,
-    precoAnterior: 6.40,
-    variacaoDiaria: 1.9,
-    variacaoMensal: 18.8,
-    variacaoTrimestral: 33.5,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 90,
-    volatilidade: 88,
-    estado: 'SC',
-    fonte: 'CEASA-SC',
-    ultimaAtualizacao: '2026-03-16',
-  },
-  // Hortifruti - PR
-  {
-    id: 'batata-pr',
-    nome: 'Batata Inglesa',
-    categoria: 'Hortifruti',
-    unidade: 'kg',
-    precoAtual: 5.30,
-    precoAnterior: 4.65,
-    variacaoDiaria: 1.0,
-    variacaoMensal: 14.0,
-    variacaoTrimestral: 23.5,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 82,
-    volatilidade: 75,
-    estado: 'PR',
-    fonte: 'CEASA-PR',
-    ultimaAtualizacao: '2026-03-16',
-  },
-  {
-    id: 'tomate-pr',
-    nome: 'Tomate Saladete',
-    categoria: 'Hortifruti',
-    unidade: 'kg',
-    precoAtual: 7.50,
-    precoAnterior: 6.30,
-    variacaoDiaria: 1.8,
-    variacaoMensal: 19.0,
-    variacaoTrimestral: 34.0,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 91,
-    volatilidade: 85,
-    estado: 'PR',
-    fonte: 'CEASA-PR',
-    ultimaAtualizacao: '2026-03-16',
-  },
-  // Outros Insumos
   {
     id: 'oleo-soja-pr',
-    nome: 'Oleo de soja',
+    nome: 'Oléo de soja',
     categoria: 'Outros Insumos',
     unidade: 'L',
     precoAtual: 8.90,
@@ -387,7 +309,7 @@ export const produtos: ProdutoMonitorado[] = [
     probabilidadeAumento: 91,
     volatilidade: 78,
     estado: 'PR',
-    fonte: 'CEPEA (Baseado na cotação da soja CBOT e câmbio). Fonte: CEPEA/Esalq.',
+    fonte: 'CEPEA/Esalq',
     ultimaAtualizacao: '2026-03-16',
   },
   {
@@ -410,7 +332,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
 ];
 
-// ─── HISTÓRICO DE PREÇOS (18 meses) ──────────────────────────────────────────
+// ─── HISTÓRICO DE PREÇOS ─────────────────────────────────────────────────────
 
 function gerarHistorico(
   precoBase: number,
@@ -432,7 +354,6 @@ function gerarHistorico(
     });
   }
 
-  // Calcular médias móveis
   for (let i = 0; i < historico.length; i++) {
     if (i >= 1) {
       const slice7 = historico.slice(Math.max(0, i - 1), i + 1);
@@ -474,7 +395,7 @@ export interface PrevisaoPreco {
 
 export const previsoes: PrevisaoPreco[] = [
   { produto: 'Café Torrado e Moído', precoAtual: 52.40, previsao3m: 61.20, previsao6m: 68.50, variacaoEsperada3m: 16.8, variacaoEsperada6m: 30.7, confianca: 78 },
-  { produto: 'Óleo de Soja', precoAtual: 8.90, previsao3m: 10.20, previsao6m: 11.40, variacaoEsperada3m: 14.6, variacaoEsperada6m: 28.1, confianca: 72 },
+  { produto: 'Oléo de soja', precoAtual: 8.90, previsao3m: 10.20, previsao6m: 11.40, variacaoEsperada3m: 14.6, variacaoEsperada6m: 28.1, confianca: 72 },
   { produto: 'Feijão Preto', precoAtual: 8.50, previsao3m: 9.80, previsao6m: 10.50, variacaoEsperada3m: 15.3, variacaoEsperada6m: 23.5, confianca: 82 },
   { produto: 'Arroz Parboilizado', precoAtual: 6.20, previsao3m: 6.80, previsao6m: 7.30, variacaoEsperada3m: 9.7, variacaoEsperada6m: 17.7, confianca: 85 },
   { produto: 'Tomate Saladete', precoAtual: 7.80, previsao3m: 9.50, previsao6m: 8.20, variacaoEsperada3m: 21.8, variacaoEsperada6m: 5.1, confianca: 60 },
@@ -485,83 +406,79 @@ export const previsoes: PrevisaoPreco[] = [
 
 export const indices: IndiceEconomico[] = [
   {
-    nome: 'IPCA Alimentação — Rio Grande do Sul',
-    sigla: 'IPCA-RS',
+    nome: 'IPCA Alimentação — Porto Alegre',
+    sigla: 'IPCA-POA',
     valorAtual: 8.42,
     variacaoMensal: 0.68,
     variacaoAcumulada12m: 8.42,
     periodo: 'Fev/2026',
   },
   {
-    nome: 'IPCA Alimentação — Santa Catarina',
-    sigla: 'IPCA-SC',
+    nome: 'IPCA Alimentação — Florianópolis',
+    sigla: 'IPCA-FLN',
     valorAtual: 7.85,
     variacaoMensal: 0.55,
     variacaoAcumulada12m: 7.85,
     periodo: 'Fev/2026',
   },
   {
-    nome: 'IPCA Alimentação — Paraná',
-    sigla: 'IPCA-PR',
+    nome: 'IPCA Alimentação — Curitiba',
+    sigla: 'IPCA-CWB',
     valorAtual: 8.10,
     variacaoMensal: 0.62,
     variacaoAcumulada12m: 8.10,
+    periodo: 'Fev/2026',
+  },
+  {
+    nome: 'IGP-M (FGV)',
+    sigla: 'IGP-M',
+    valorAtual: 4.50,
+    variacaoMensal: 0.45,
+    variacaoAcumulada12m: 4.50,
+    periodo: 'Fev/2026',
+  },
+  {
+    nome: 'FIPE Alimentação',
+    sigla: 'FIPE-Alim',
+    valorAtual: 7.20,
+    variacaoMensal: 0.72,
+    variacaoAcumulada12m: 7.20,
     periodo: 'Fev/2026',
   },
 ];
 
 // ─── ALERTAS ──────────────────────────────────────────────────────────────────
 
-export const alertas: AlertaInflacao[] = [
-  {
-    id: 'alerta-cafe',
-    produto: 'Café Torrado e Moído',
-    categoria: 'Outros Insumos',
-    tipo: 'variacao_acima_indice',
-    descricao: 'Variação mensal de 18,6% — mais que o dobro do IPCA Alimentação regional (8,4%). Tendência de alta sustentada por quebra de safra no Brasil e demanda internacional crescente.',
-    percentualVariacao: 18.6,
-    tendenciaProjetada: 30.7,
-    nivelRisco: 'alto',
+export const alertas: AlertaInflacao[] = produtos.map(p => {
+  let tipo: AlertaInflacao['tipo'] = 'tendencia_alta';
+  let descricao = '';
+  
+  if (p.variacaoMensal > 15) {
+    tipo = 'aceleracao';
+    descricao = `Aceleração crítica de preços: ${p.variacaoMensal.toFixed(1)}% no mês. Oferta extremamente restrita no mercado regional.`;
+  } else if (p.variacaoMensal > 8) {
+    tipo = 'variacao_acima_indice';
+    descricao = `Variação de ${p.variacaoMensal.toFixed(1)}% no mês, superando significativamente os índices de inflação média.`;
+  } else if (p.volatilidade > 70) {
+    tipo = 'volatilidade_alta';
+    descricao = `Alta volatilidade detectada (${p.volatilidade}%). Preços instáveis devido a fatores climáticos ou sazonais.`;
+  } else {
+    descricao = `Tendência de alta sustentada de ${p.variacaoMensal.toFixed(1)}% no mês. Monitoramento preventivo recomendado.`;
+  }
+
+  return {
+    id: `alerta-${p.id}`,
+    produto: p.nome,
+    categoria: p.categoria,
+    tipo,
+    descricao,
+    percentualVariacao: p.variacaoMensal,
+    tendenciaProjetada: p.variacaoTrimestral * 1.5,
+    nivelRisco: p.nivelRisco,
     dataAlerta: '2026-03-16',
-    ativo: true,
-  },
-  {
-    id: 'alerta-feijao',
-    produto: 'Feijão Preto',
-    categoria: 'Grãos e Secos',
-    tipo: 'aceleracao',
-    descricao: 'Aceleração de preços: +15,2% no mês. Oferta restrita e demanda ativa sustentam os preços elevados no mercado do Sul.',
-    percentualVariacao: 15.2,
-    tendenciaProjetada: 23.5,
-    nivelRisco: 'alto',
-    dataAlerta: '2026-03-16',
-    ativo: true,
-  },
-  {
-    id: 'alerta-oleo',
-    produto: 'Oleo de soja',
-    categoria: 'Outros Insumos',
-    tipo: 'aceleracao',
-    descricao: 'Aceleração de preços: +14,1% no mês. Alta correlação com cotação da soja no mercado internacional (CBOT) e câmbio desfavorável.',
-    percentualVariacao: 14.1,
-    tendenciaProjetada: 28.1,
-    nivelRisco: 'alto',
-    dataAlerta: '2026-03-16',
-    ativo: true,
-  },
-  {
-    id: 'alerta-tomate',
-    produto: 'Tomate Saladete',
-    categoria: 'Hortifruti',
-    tipo: 'volatilidade_alta',
-    descricao: 'Alta volatilidade detectada: +20,0% no mês. Fatores climáticos afetando a colheita nas principais regiões produtoras.',
-    percentualVariacao: 20.0,
-    tendenciaProjetada: 35.2,
-    nivelRisco: 'alto',
-    dataAlerta: '2026-03-16',
-    ativo: true,
-  },
-];
+    ativo: p.nivelRisco !== 'baixo',
+  };
+});
 
 // ─── RANKING DE RISCO ─────────────────────────────────────────────────────────
 
@@ -580,24 +497,32 @@ export interface ItemRanking {
   fonte: string;
 }
 
-export const rankingRisco: ItemRanking[] = [
-  { posicao: 1, produto: 'Café Torrado e Moído', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 93, probabilidadeAumento: 93, volatilidade: 85, variacaoTrimestral: 28.4, impactoCusto: 'medio', precoAtual: 52.40, unidade: 'kg', fonte: 'CEPEA' },
-  { posicao: 2, produto: 'Oleo de soja', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 91, probabilidadeAumento: 91, volatilidade: 78, variacaoTrimestral: 22.8, impactoCusto: 'alto', precoAtual: 8.90, unidade: 'L', fonte: 'CEPEA/Esalq' },
-  { posicao: 3, produto: 'Feijão Preto', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 90, probabilidadeAumento: 90, volatilidade: 75, variacaoTrimestral: 22.4, impactoCusto: 'alto', precoAtual: 8.50, unidade: 'kg', fonte: 'CEPEA' },
-  { posicao: 4, produto: 'Arroz Parboilizado', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 85, probabilidadeAumento: 85, volatilidade: 60, variacaoTrimestral: 15.5, impactoCusto: 'alto', precoAtual: 6.20, unidade: 'kg', fonte: 'CEPEA' },
-  { posicao: 5, produto: 'Tomate Saladete', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 82, probabilidadeAumento: 92, volatilidade: 90, variacaoTrimestral: 35.2, impactoCusto: 'medio', precoAtual: 7.80, unidade: 'kg', fonte: 'CEASA-RS' },
-  { posicao: 6, produto: 'Batata Inglesa', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 78, probabilidadeAumento: 85, volatilidade: 80, variacaoTrimestral: 25.4, impactoCusto: 'medio', precoAtual: 5.50, unidade: 'kg', fonte: 'CEASA-RS' },
-];
+export const rankingRisco: ItemRanking[] = produtos
+  .map(p => ({
+    produto: p.nome,
+    categoria: p.categoria,
+    nivelRisco: p.nivelRisco,
+    scoreRisco: Math.round((p.probabilidadeAumento * 0.4) + (p.volatilidade * 0.3) + (Math.min(100, p.variacaoTrimestral * 3) * 0.3)),
+    probabilidadeAumento: p.probabilidadeAumento,
+    volatilidade: p.volatilidade,
+    variacaoTrimestral: p.variacaoTrimestral,
+    impactoCusto: (p.categoria === 'Proteínas' || p.nome.includes('Arroz') || p.nome.includes('Feijão') || p.nome.includes('Oléo')) ? 'alto' : 'medio' as any,
+    precoAtual: p.precoAtual,
+    unidade: p.unidade,
+    fonte: p.fonte
+  }))
+  .sort((a, b) => b.scoreRisco - a.scoreRisco)
+  .map((item, idx) => ({ ...item, posicao: idx + 1 }));
 
 // ─── RESUMO EXECUTIVO ─────────────────────────────────────────────────────────
 
 export const resumoExecutivo = {
-  totalProdutosMonitorados: 15,
-  produtosEmAlerta: 4,
-  variacaoMediaMensal: 9.2,
-  variacaoMediaTrimestral: 15.8,
+  totalProdutosMonitorados: produtos.length,
+  produtosEmAlerta: alertas.filter(a => a.ativo).length,
+  variacaoMediaMensal: Math.round((produtos.reduce((acc, p) => acc + p.variacaoMensal, 0) / produtos.length) * 10) / 10,
+  variacaoMediaTrimestral: Math.round((produtos.reduce((acc, p) => acc + p.variacaoTrimestral, 0) / produtos.length) * 10) / 10,
   ipca_alimentacao_media_sul: 8.12,
-  impactoCustoRefeicao: 12.5, // % estimado de aumento no custo da refeição
+  impactoCustoRefeicao: 12.5,
   ultimaAtualizacao: '2026-03-16T10:00:00',
   proximaAtualizacao: '2026-03-17T06:00:00',
 };
