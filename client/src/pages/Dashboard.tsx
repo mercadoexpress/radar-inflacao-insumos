@@ -6,8 +6,6 @@
 
 import { useMemo } from 'react';
 import {
-  AreaChart,
-  Area,
   BarChart,
   Bar,
   XAxis,
@@ -32,9 +30,7 @@ import {
   produtos,
   rankingRisco,
   indices,
-  alertas,
   resumoExecutivo,
-  historicoPorProduto,
 } from '@/data/dadosSimulados';
 import { cn } from '@/lib/utils';
 
@@ -147,20 +143,6 @@ export default function Dashboard() {
     []
   );
 
-  // Dados para gráfico de evolução histórica (café e óleo de soja)
-  const dadosEvolucao = useMemo(() => {
-    const cafe = historicoPorProduto['cafe-rs'] || [];
-    const oleo = historicoPorProduto['oleo-soja-pr'] || [];
-    const arroz = historicoPorProduto['arroz-rs'] || [];
-
-    return cafe.slice(-26).map((c, i) => ({
-      data: c.data.substring(5), // MM-DD
-      Café: c.preco,
-      'Óleo de Soja': oleo[i]?.preco,
-      Arroz: arroz[i]?.preco,
-    }));
-  }, []);
-
   // Dados para gráfico de índices
   const dadosIndices = useMemo(() =>
     indices.map((idx) => ({
@@ -170,8 +152,6 @@ export default function Dashboard() {
     })),
     []
   );
-
-  const alertasAtivos = alertas.filter((a) => a.ativo);
 
   return (
     <div className="space-y-6">
@@ -199,7 +179,7 @@ export default function Dashboard() {
         <KpiCard
           titulo="Produtos Monitorados"
           valor={String(resumoExecutivo.totalProdutosMonitorados)}
-          subtitulo="9 insumos prioritários"
+          subtitulo="15 insumos prioritários"
           icon={<Activity size={20} />}
           accentColor="#003770"
           delay={0}
@@ -266,44 +246,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Evolução histórica */}
-        <div className="kpi-card p-5">
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp size={16} style={{ color: '#003770' }} />
-            <div>
-              <h3 className="text-sm font-bold text-gray-900 font-display">Evolução de Preços — Insumos Críticos</h3>
-              <p className="text-xs text-gray-400">Últimas 26 semanas (R$/unidade)</p>
-            </div>
-          </div>
-          <ResponsiveContainer width="100%" height={240}>
-            <AreaChart data={dadosEvolucao} margin={{ left: 0, right: 8, top: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="gradCafe" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#EE7D00" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#EE7D00" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="gradOleo" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#003770" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#003770" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" />
-              <XAxis dataKey="data" tick={{ fontSize: 10, fill: '#9CA3AF' }} interval={4} />
-              <YAxis tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(v) => `R$${v}`} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
-              <Area type="monotone" dataKey="Café" stroke="#EE7D00" strokeWidth={2} fill="url(#gradCafe)" dot={false} />
-              <Area type="monotone" dataKey="Óleo de Soja" stroke="#003770" strokeWidth={2} fill="url(#gradOleo)" dot={false} />
-              <Area type="monotone" dataKey="Arroz" stroke="#16A34A" strokeWidth={1.5} fill="none" dot={false} strokeDasharray="4 2" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* Índices econômicos + Alertas recentes */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Índices */}
-        <div className="kpi-card p-5 lg:col-span-2">
+        <div className="kpi-card p-5">
           <div className="flex items-center gap-2 mb-4">
             <BarChart3 size={16} style={{ color: '#003770' }} />
             <div>
@@ -311,7 +255,7 @@ export default function Dashboard() {
               <p className="text-xs text-gray-400">Acumulado 12 meses vs. variação mensal</p>
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={240}>
             <BarChart data={dadosIndices} margin={{ left: 0, right: 8, top: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" />
               <XAxis dataKey="sigla" tick={{ fontSize: 11, fill: '#374151' }} />
@@ -323,53 +267,16 @@ export default function Dashboard() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-
-        {/* Alertas recentes */}
-        <div className="kpi-card p-5">
-          <div className="flex items-center gap-2 mb-4">
-            <AlertTriangle size={16} style={{ color: '#DC2626' }} />
-            <div>
-              <h3 className="text-sm font-bold text-gray-900 font-display">Alertas Ativos</h3>
-              <p className="text-xs text-gray-400">{alertasAtivos.length} produtos em monitoramento</p>
-            </div>
-          </div>
-          <div className="space-y-2">
-            {alertasAtivos.slice(0, 5).map((alerta) => (
-              <div
-                key={alerta.id}
-                className="flex items-start gap-2.5 p-2.5 rounded-md border"
-                style={{
-                  background: RISK_BG[alerta.nivelRisco],
-                  borderColor: `${RISK_COLORS[alerta.nivelRisco]}40`,
-                }}
-              >
-                <div
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5 animate-alert-pulse"
-                  style={{ background: RISK_COLORS[alerta.nivelRisco] }}
-                />
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold text-gray-800 truncate">{alerta.produto}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">
-                    <span className="font-mono-data font-semibold" style={{ color: RISK_COLORS[alerta.nivelRisco] }}>
-                      {formatPct(alerta.percentualVariacao)}
-                    </span>{' '}
-                    no mês
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
-      {/* Top 5 Ranking de Risco */}
+      {/* Ranking de Risco */}
       <div className="kpi-card p-5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <ShieldAlert size={16} style={{ color: '#EE7D00' }} />
             <div>
               <h3 className="text-sm font-bold text-gray-900 font-display">Ranking de Pressão Inflacionária</h3>
-              <p className="text-xs text-gray-400">Classificação por score de risco composto</p>
+              <p className="text-xs text-gray-400">Classificação por score de risco composto | Fonte: CEPEA e CEASA</p>
             </div>
           </div>
         </div>
@@ -379,18 +286,21 @@ export default function Dashboard() {
               <tr className="border-b border-border">
                 <th className="text-left py-2 px-3 text-gray-500 font-semibold w-8">#</th>
                 <th className="text-left py-2 px-3 text-gray-500 font-semibold">Produto</th>
-                <th className="text-left py-2 px-3 text-gray-500 font-semibold hidden sm:table-cell">Categoria</th>
+                <th className="text-right py-2 px-3 text-gray-500 font-semibold">Preço Atual</th>
                 <th className="text-right py-2 px-3 text-gray-500 font-semibold">Var. Trim.</th>
                 <th className="text-right py-2 px-3 text-gray-500 font-semibold">Score</th>
                 <th className="text-center py-2 px-3 text-gray-500 font-semibold">Risco</th>
+                <th className="text-left py-2 px-3 text-gray-500 font-semibold">Fonte</th>
               </tr>
             </thead>
             <tbody>
-              {rankingRisco.slice(0, 7).map((item) => (
+              {rankingRisco.slice(0, 6).map((item) => (
                 <tr key={item.posicao} className="border-b border-border/50 hover:bg-gray-50 transition-colors">
                   <td className="py-2.5 px-3 font-bold text-gray-400">{item.posicao}</td>
                   <td className="py-2.5 px-3 font-semibold text-gray-800">{item.produto}</td>
-                  <td className="py-2.5 px-3 text-gray-500 hidden sm:table-cell">{item.categoria}</td>
+                  <td className="py-2.5 px-3 text-right font-mono-data font-semibold text-gray-700">
+                    {formatBRL(item.precoAtual)}
+                  </td>
                   <td className="py-2.5 px-3 text-right font-mono-data font-semibold" style={{ color: RISK_COLORS[item.nivelRisco] }}>
                     {formatPct(item.variacaoTrimestral)}
                   </td>
@@ -419,6 +329,9 @@ export default function Dashboard() {
                     >
                       {RISK_LABELS[item.nivelRisco]}
                     </span>
+                  </td>
+                  <td className="py-2.5 px-3 text-left text-gray-400 italic">
+                    {item.fonte}
                   </td>
                 </tr>
               ))}

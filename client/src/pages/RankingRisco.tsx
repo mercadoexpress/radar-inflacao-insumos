@@ -6,22 +6,21 @@
 
 import { useMemo } from 'react';
 import {
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  Radar,
-  ResponsiveContainer,
-  Tooltip,
   BarChart,
   Bar,
   XAxis,
   YAxis,
   CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   Cell,
 } from 'recharts';
 import { ShieldAlert, TrendingUp, Activity, Zap } from 'lucide-react';
 import { rankingRisco, previsoes } from '@/data/dadosSimulados';
 import { cn } from '@/lib/utils';
+
+const formatBRL = (v: number) =>
+  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 
 const formatPct = (v: number) => {
   const s = v > 0 ? '+' : '';
@@ -69,16 +68,6 @@ function CustomTooltip({ active, payload, label }: any) {
 }
 
 export default function RankingRisco() {
-  const dadosRadar = useMemo(() => {
-    const top5 = rankingRisco.slice(0, 5);
-    return [
-      { metrica: 'Prob. Aumento', ...Object.fromEntries(top5.map((r) => [r.produto.split(' ')[0], r.probabilidadeAumento])) },
-      { metrica: 'Volatilidade', ...Object.fromEntries(top5.map((r) => [r.produto.split(' ')[0], r.volatilidade])) },
-      { metrica: 'Var. Trim.', ...Object.fromEntries(top5.map((r) => [r.produto.split(' ')[0], Math.min(100, r.variacaoTrimestral * 3)])) },
-      { metrica: 'Score Risco', ...Object.fromEntries(top5.map((r) => [r.produto.split(' ')[0], r.scoreRisco])) },
-    ];
-  }, []);
-
   const dadosBarras = useMemo(() =>
     rankingRisco.map((r) => ({
       nome: r.produto.split(' ').slice(0, 2).join(' '),
@@ -148,7 +137,7 @@ export default function RankingRisco() {
             <ShieldAlert size={16} style={{ color: '#003770' }} />
             <div>
               <h3 className="text-sm font-bold text-gray-900 font-display">Ranking Detalhado de Risco</h3>
-              <p className="text-xs text-gray-400">Classificação por score composto de pressão inflacionária</p>
+              <p className="text-xs text-gray-400">Classificação por score composto de pressão inflacionária | Base de dados: CEPEA e CEASA</p>
             </div>
           </div>
         </div>
@@ -199,10 +188,19 @@ export default function RankingRisco() {
                       >
                         {IMPACT_LABELS[item.impactoCusto]} no custo
                       </span>
+                      <span className="text-xs text-gray-400 italic ml-auto">Fonte: {item.fonte}</span>
                     </div>
 
                     {/* Métricas em grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                      {/* Preço Atual */}
+                      <div>
+                        <div className="text-xs text-gray-400 mb-1">Preço Atual</div>
+                        <div className="font-mono-data font-bold text-sm text-gray-800">
+                          {formatBRL(item.precoAtual)}
+                        </div>
+                      </div>
+
                       {/* Score */}
                       <div>
                         <div className="text-xs text-gray-400 mb-1">Score de Risco</div>

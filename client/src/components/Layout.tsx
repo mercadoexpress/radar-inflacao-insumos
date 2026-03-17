@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils';
 
 const LOGO_HORIZONTAL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663443994167/jT2UUUNJKLcCqzAqU9WifS/express_logo_horizontal_22312e17.png';
 
-export type PageId = 'dashboard' | 'monitor' | 'historico' | 'alertas' | 'ranking';
+export type PageId = 'dashboard' | 'monitor' | 'alertas' | 'ranking';
 
 interface NavItem {
   id: PageId;
@@ -31,8 +31,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { id: 'dashboard', label: 'Dashboard Gerencial', icon: <LayoutDashboard size={18} /> },
   { id: 'monitor', label: 'Monitor de Preços', icon: <Activity size={18} /> },
-  { id: 'historico', label: 'Histórico e Tendências', icon: <TrendingUp size={18} /> },
-  { id: 'alertas', label: 'Alertas de Inflação', icon: <Bell size={18} />, badge: 5 },
+  { id: 'alertas', label: 'Alertas de Inflação', icon: <Bell size={18} />, badge: 4 },
   { id: 'ranking', label: 'Ranking de Risco', icon: <ShieldAlert size={18} /> },
 ];
 

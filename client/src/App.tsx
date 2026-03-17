@@ -1,6 +1,6 @@
 /**
  * App.tsx — Radar Express de Inflação de Insumos
- * Roteamento entre as 5 seções do dashboard
+ * Roteamento entre as seções do dashboard
  * Design: Sidebar azul Express + conteúdo principal
  */
 
@@ -12,7 +12,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Layout, { type PageId } from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import MonitorPrecos from './pages/MonitorPrecos';
-import HistoricoTendencias from './pages/HistoricoTendencias';
 import AlertasInflacao from './pages/AlertasInflacao';
 import RankingRisco from './pages/RankingRisco';
 
@@ -25,8 +24,6 @@ function AppContent() {
         return <Dashboard />;
       case 'monitor':
         return <MonitorPrecos />;
-      case 'historico':
-        return <HistoricoTendencias />;
       case 'alertas':
         return <AlertasInflacao />;
       case 'ranking':
