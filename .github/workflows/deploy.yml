@@ -1,0 +1,61 @@
+name: Build e Deploy para GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 6 * * *' # 06:00 BRT (UTC-3) - Atualização diária
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Configurar Python para atualização de dados
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Executar script de atualização de dados
+        run: python scripts/update_data.py
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Build da aplicação
+        run: pnpm build
+
+      - name: Deploy para GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/public
+          cname: radar-inflacao.mercadoexpress.com.br
+
+      - name: Commit e Push das alterações de dados (se houver)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add client/src/data/dadosSimulados.ts
+          git commit -m "chore: atualização diária de dados [$(date +'%d/%m/%Y %H:%M:%S')][skip ci]" || echo "Sem alterações de dados para commitar"
+          git push
