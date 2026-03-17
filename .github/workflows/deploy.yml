@@ -50,7 +50,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/public
-          cname: radar-inflacao.mercadoexpress.com.br
+          # cname: radar-inflacao.mercadoexpress.com.br
 
       - name: Commit e Push das alterações de dados (se houver)
         run: |
