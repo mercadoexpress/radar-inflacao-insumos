@@ -374,7 +374,7 @@ export const produtos: ProdutoMonitorado[] = [
   // Outros Insumos
   {
     id: 'oleo-soja-pr',
-    nome: 'Óleo de Soja',
+    nome: 'Oleo de soja',
     categoria: 'Outros Insumos',
     unidade: 'L',
     precoAtual: 8.90,
@@ -387,7 +387,7 @@ export const produtos: ProdutoMonitorado[] = [
     probabilidadeAumento: 91,
     volatilidade: 78,
     estado: 'PR',
-    fonte: 'CEPEA (Baseado na cotação da soja CBOT e câmbio)',
+    fonte: 'CEPEA (Baseado na cotação da soja CBOT e câmbio). Fonte: CEPEA/Esalq.',
     ultimaAtualizacao: '2026-03-16',
   },
   {
@@ -539,7 +539,7 @@ export const alertas: AlertaInflacao[] = [
   },
   {
     id: 'alerta-oleo',
-    produto: 'Óleo de Soja',
+    produto: 'Oleo de soja',
     categoria: 'Outros Insumos',
     tipo: 'aceleracao',
     descricao: 'Aceleração de preços: +14,1% no mês. Alta correlação com cotação da soja no mercado internacional (CBOT) e câmbio desfavorável.',
@@ -576,16 +576,17 @@ export interface ItemRanking {
   variacaoTrimestral: number;
   impactoCusto: 'alto' | 'medio' | 'baixo'; // impacto no custo da refeição
   precoAtual: number;
+  unidade: string;
   fonte: string;
 }
 
 export const rankingRisco: ItemRanking[] = [
-  { posicao: 1, produto: 'Café Torrado e Moído', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 93, probabilidadeAumento: 93, volatilidade: 85, variacaoTrimestral: 28.4, impactoCusto: 'medio', precoAtual: 52.40, fonte: 'CEPEA' },
-  { posicao: 2, produto: 'Óleo de Soja', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 91, probabilidadeAumento: 91, volatilidade: 78, variacaoTrimestral: 22.8, impactoCusto: 'alto', precoAtual: 8.90, fonte: 'CEPEA' },
-  { posicao: 3, produto: 'Feijão Preto', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 90, probabilidadeAumento: 90, volatilidade: 75, variacaoTrimestral: 22.4, impactoCusto: 'alto', precoAtual: 8.50, fonte: 'CEPEA' },
-  { posicao: 4, produto: 'Arroz Parboilizado', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 85, probabilidadeAumento: 85, volatilidade: 60, variacaoTrimestral: 15.5, impactoCusto: 'alto', precoAtual: 6.20, fonte: 'CEPEA' },
-  { posicao: 5, produto: 'Tomate Saladete', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 82, probabilidadeAumento: 92, volatilidade: 90, variacaoTrimestral: 35.2, impactoCusto: 'medio', precoAtual: 7.80, fonte: 'CEASA-RS' },
-  { posicao: 6, produto: 'Batata Inglesa', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 78, probabilidadeAumento: 85, volatilidade: 80, variacaoTrimestral: 25.4, impactoCusto: 'medio', precoAtual: 5.50, fonte: 'CEASA-RS' },
+  { posicao: 1, produto: 'Café Torrado e Moído', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 93, probabilidadeAumento: 93, volatilidade: 85, variacaoTrimestral: 28.4, impactoCusto: 'medio', precoAtual: 52.40, unidade: 'kg', fonte: 'CEPEA' },
+  { posicao: 2, produto: 'Oleo de soja', categoria: 'Outros Insumos', nivelRisco: 'alto', scoreRisco: 91, probabilidadeAumento: 91, volatilidade: 78, variacaoTrimestral: 22.8, impactoCusto: 'alto', precoAtual: 8.90, unidade: 'L', fonte: 'CEPEA/Esalq' },
+  { posicao: 3, produto: 'Feijão Preto', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 90, probabilidadeAumento: 90, volatilidade: 75, variacaoTrimestral: 22.4, impactoCusto: 'alto', precoAtual: 8.50, unidade: 'kg', fonte: 'CEPEA' },
+  { posicao: 4, produto: 'Arroz Parboilizado', categoria: 'Grãos e Secos', nivelRisco: 'alto', scoreRisco: 85, probabilidadeAumento: 85, volatilidade: 60, variacaoTrimestral: 15.5, impactoCusto: 'alto', precoAtual: 6.20, unidade: 'kg', fonte: 'CEPEA' },
+  { posicao: 5, produto: 'Tomate Saladete', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 82, probabilidadeAumento: 92, volatilidade: 90, variacaoTrimestral: 35.2, impactoCusto: 'medio', precoAtual: 7.80, unidade: 'kg', fonte: 'CEASA-RS' },
+  { posicao: 6, produto: 'Batata Inglesa', categoria: 'Hortifruti', nivelRisco: 'alto', scoreRisco: 78, probabilidadeAumento: 85, volatilidade: 80, variacaoTrimestral: 25.4, impactoCusto: 'medio', precoAtual: 5.50, unidade: 'kg', fonte: 'CEASA-RS' },
 ];
 
 // ─── RESUMO EXECUTIVO ─────────────────────────────────────────────────────────

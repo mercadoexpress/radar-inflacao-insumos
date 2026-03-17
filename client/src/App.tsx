@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 import MonitorPrecos from './pages/MonitorPrecos';
 import AlertasInflacao from './pages/AlertasInflacao';
 import RankingRisco from './pages/RankingRisco';
+import IndicesEconomicos from './pages/IndicesEconomicos';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<PageId>('dashboard');
@@ -28,6 +29,8 @@ function AppContent() {
         return <AlertasInflacao />;
       case 'ranking':
         return <RankingRisco />;
+      case 'indices':
+        return <IndicesEconomicos />;
       default:
         return <Dashboard />;
     }

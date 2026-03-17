@@ -5,6 +5,9 @@
  */
 
 import { useState } from 'react';
+import { resumoExecutivo } from '@/data/dadosSimulados';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import {
   LayoutDashboard,
   TrendingUp,
@@ -19,7 +22,7 @@ import { cn } from '@/lib/utils';
 
 const LOGO_HORIZONTAL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663443994167/jT2UUUNJKLcCqzAqU9WifS/express_logo_horizontal_22312e17.png';
 
-export type PageId = 'dashboard' | 'monitor' | 'alertas' | 'ranking';
+export type PageId = 'dashboard' | 'monitor' | 'alertas' | 'ranking' | 'indices';
 
 interface NavItem {
   id: PageId;
@@ -33,6 +36,7 @@ const navItems: NavItem[] = [
   { id: 'monitor', label: 'Monitor de Preços', icon: <Activity size={18} /> },
   { id: 'alertas', label: 'Alertas de Inflação', icon: <Bell size={18} />, badge: 4 },
   { id: 'ranking', label: 'Ranking de Risco', icon: <ShieldAlert size={18} /> },
+  { id: 'indices', label: 'Índices Econômicos', icon: <TrendingUp size={18} /> },
 ];
 
 interface LayoutProps {
@@ -169,7 +173,7 @@ export default function Layout({ currentPage, onNavigate, children }: LayoutProp
             {/* Indicador de atualização */}
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span>Atualizado: 16/03/2026 10:00</span>
+              <span>Atualizado: {format(new Date(resumoExecutivo.ultimaAtualizacao), "dd/MM/yyyy HH:mm", { locale: ptBR })}</span>
             </div>
 
             {/* Badge de alertas ativos */}

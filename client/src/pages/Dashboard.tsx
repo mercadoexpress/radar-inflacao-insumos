@@ -298,8 +298,9 @@ export default function Dashboard() {
                 <tr key={item.posicao} className="border-b border-border/50 hover:bg-gray-50 transition-colors">
                   <td className="py-2.5 px-3 font-bold text-gray-400">{item.posicao}</td>
                   <td className="py-2.5 px-3 font-semibold text-gray-800">{item.produto}</td>
-                  <td className="py-2.5 px-3 text-right font-mono-data font-semibold text-gray-700">
-                    {formatBRL(item.precoAtual)}
+                  <td className="py-2.5 px-3 text-right">
+                    <div className="font-mono-data font-semibold text-gray-700">{formatBRL(item.precoAtual)}</div>
+                    <div className="text-[10px] text-gray-400">por {item.unidade}</div>
                   </td>
                   <td className="py-2.5 px-3 text-right font-mono-data font-semibold" style={{ color: RISK_COLORS[item.nivelRisco] }}>
                     {formatPct(item.variacaoTrimestral)}
