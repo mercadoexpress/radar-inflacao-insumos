@@ -76,7 +76,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 68,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'frango-rs',
@@ -94,7 +94,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 42,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'ovo-rs',
@@ -112,7 +112,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 50,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'leite-rs',
@@ -130,7 +130,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 45,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'arroz-rs',
@@ -148,7 +148,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 60,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'feijao-preto-rs',
@@ -166,7 +166,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 75,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'milho-rs',
@@ -184,7 +184,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 65,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'trigo-rs',
@@ -202,7 +202,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 40,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'batata-rs',
@@ -220,7 +220,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 80,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'tomate-rs',
@@ -238,7 +238,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 90,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'cebola-rs',
@@ -256,7 +256,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 55,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'banana-rs',
@@ -274,7 +274,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 45,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'laranja-rs',
@@ -292,7 +292,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 35,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'oleo-soja-pr',
@@ -310,7 +310,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 78,
     estado: 'PR',
     fonte: 'CEPEA/Esalq',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'cafe-rs',
@@ -328,7 +328,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 85,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-17T12:47:22',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
   },
 ];
 
@@ -523,6 +523,6 @@ export const resumoExecutivo = {
   variacaoMediaTrimestral: Math.round((produtos.reduce((acc, p) => acc + p.variacaoTrimestral, 0) / produtos.length) * 10) / 10,
   ipca_alimentacao_media_sul: 8.12,
   impactoCustoRefeicao: 12.5,
-  ultimaAtualizacao: '2026-03-17T12:47:22',
-  proximaAtualizacao: '2026-03-18T06:00:00',
+  ultimaAtualizacao: '2026-03-18T08:03:58',
+  proximaAtualizacao: '2026-03-19T06:00:00',
 };
