@@ -524,3 +524,24 @@ export const rankingRisco = [
   { produto: 'Feijão Preto', score: 88, tendencia: 'alta' },
   { produto: 'Arroz Parboilizado', score: 85, tendencia: 'alta' },
 ];
+
+// ─── RESUMO EXECUTIVO ────────────────────────────────────────────────────────
+
+export const resumoExecutivo = {
+  ultimaAtualizacao: '2026-03-18T08:03:58',
+  proximaAtualizacao: '2026-03-19T06:00:00',
+  statusMercado: 'Pressão de Alta',
+  variacaoMediaMensal: 8.4,
+  riscoGeral: 'alto' as NivelRisco,
+};
+
+// ─── PREVISÕES ──────────────────────────────────────────────────────────────
+
+export const previsoes = [
+  { mes: 'Abr/26', ipca: 0.75, igpm: 0.42 },
+  { mes: 'Mai/26', ipca: 0.68, igpm: 0.38 },
+  { mes: 'Jun/26', ipca: 0.62, igpm: 0.35 },
+  { mes: 'Jul/26', ipca: 0.58, igpm: 0.32 },
+  { mes: 'Ago/26', ipca: 0.55, igpm: 0.30 },
+  { mes: 'Set/26', ipca: 0.52, igpm: 0.28 },
+];
