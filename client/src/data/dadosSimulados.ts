@@ -57,83 +57,11 @@ export interface AlertaInflacao {
   ativo: boolean;
 }
 
-// ─── PRODUTOS MONITORADOS (15 PRODUTOS) ───────────────────────────────────────
+// ─── PRODUTOS MONITORADOS ─────────────────────────────────────────────────────
 
 export const produtos: ProdutoMonitorado[] = [
   {
-    id: 'carne-bovina-rs',
-    nome: 'Carne Bovina (Traseiro)',
-    categoria: 'Proteínas',
-    unidade: 'kg',
-    precoAtual: 32.80,
-    precoAnterior: 30.50,
-    variacaoDiaria: 0.8,
-    variacaoMensal: 7.5,
-    variacaoTrimestral: 12.3,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 82,
-    volatilidade: 68,
-    estado: 'RS',
-    fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'frango-rs',
-    nome: 'Frango Inteiro',
-    categoria: 'Proteínas',
-    unidade: 'kg',
-    precoAtual: 9.20,
-    precoAnterior: 8.90,
-    variacaoDiaria: 0.3,
-    variacaoMensal: 3.4,
-    variacaoTrimestral: 5.7,
-    tendencia: 'alta',
-    nivelRisco: 'moderado',
-    probabilidadeAumento: 55,
-    volatilidade: 42,
-    estado: 'RS',
-    fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'ovo-rs',
-    nome: 'Ovo Branco',
-    categoria: 'Proteínas',
-    unidade: 'dz',
-    precoAtual: 5.60,
-    precoAnterior: 5.20,
-    variacaoDiaria: 0.5,
-    variacaoMensal: 7.7,
-    variacaoTrimestral: 10.2,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 75,
-    volatilidade: 50,
-    estado: 'RS',
-    fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'leite-rs',
-    nome: 'Leite Longa Vida',
-    categoria: 'Proteínas',
-    unidade: 'L',
-    precoAtual: 5.80,
-    precoAnterior: 5.40,
-    variacaoDiaria: 0.2,
-    variacaoMensal: 7.4,
-    variacaoTrimestral: 12.1,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 80,
-    volatilidade: 45,
-    estado: 'RS',
-    fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'arroz-rs',
+    id: 'arroz-parboilizado-rs',
     nome: 'Arroz Parboilizado',
     categoria: 'Grãos e Secos',
     unidade: 'kg',
@@ -169,6 +97,132 @@ export const produtos: ProdutoMonitorado[] = [
     ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
+    id: 'oleo-soja-pr',
+    nome: 'Óleo de Soja',
+    categoria: 'Outros Insumos',
+    unidade: 'L',
+    precoAtual: 8.90,
+    precoAnterior: 7.80,
+    variacaoDiaria: 1.2,
+    variacaoMensal: 14.1,
+    variacaoTrimestral: 22.8,
+    tendencia: 'alta',
+    nivelRisco: 'alto',
+    probabilidadeAumento: 91,
+    volatilidade: 78,
+    estado: 'PR',
+    fonte: 'CEPEA/Esalq',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'carne-bovina-traseira-rs',
+    nome: 'Carne Bovina Traseira',
+    categoria: 'Proteínas',
+    unidade: 'kg',
+    precoAtual: 34.50,
+    precoAnterior: 32.10,
+    variacaoDiaria: 0.7,
+    variacaoMensal: 7.4,
+    variacaoTrimestral: 11.2,
+    tendencia: 'alta',
+    nivelRisco: 'alto',
+    probabilidadeAumento: 80,
+    volatilidade: 65,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'frango-rs',
+    nome: 'Frango',
+    categoria: 'Proteínas',
+    unidade: 'kg',
+    precoAtual: 9.20,
+    precoAnterior: 8.90,
+    variacaoDiaria: 0.3,
+    variacaoMensal: 3.4,
+    variacaoTrimestral: 5.7,
+    tendencia: 'alta',
+    nivelRisco: 'moderado',
+    probabilidadeAumento: 55,
+    volatilidade: 42,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'carne-suina-sc',
+    nome: 'Carne Suína',
+    categoria: 'Proteínas',
+    unidade: 'kg',
+    precoAtual: 14.80,
+    precoAnterior: 13.90,
+    variacaoDiaria: 0.5,
+    variacaoMensal: 6.5,
+    variacaoTrimestral: 9.8,
+    tendencia: 'alta',
+    nivelRisco: 'moderado',
+    probabilidadeAumento: 65,
+    volatilidade: 50,
+    estado: 'SC',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'cafe-rs',
+    nome: 'Café',
+    categoria: 'Outros Insumos',
+    unidade: 'kg',
+    precoAtual: 52.40,
+    precoAnterior: 44.20,
+    variacaoDiaria: 1.8,
+    variacaoMensal: 18.6,
+    variacaoTrimestral: 28.4,
+    tendencia: 'alta',
+    nivelRisco: 'alto',
+    probabilidadeAumento: 93,
+    volatilidade: 85,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'acucar-rs',
+    nome: 'Açúcar',
+    categoria: 'Grãos e Secos',
+    unidade: 'kg',
+    precoAtual: 4.15,
+    precoAnterior: 3.95,
+    variacaoDiaria: 0.2,
+    variacaoMensal: 5.1,
+    variacaoTrimestral: 7.8,
+    tendencia: 'estavel',
+    nivelRisco: 'baixo',
+    probabilidadeAumento: 45,
+    volatilidade: 30,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'macarrao-rs',
+    nome: 'Macarrão',
+    categoria: 'Grãos e Secos',
+    unidade: 'kg',
+    precoAtual: 5.80,
+    precoAnterior: 5.50,
+    variacaoDiaria: 0.1,
+    variacaoMensal: 5.4,
+    variacaoTrimestral: 8.2,
+    tendencia: 'alta',
+    nivelRisco: 'baixo',
+    probabilidadeAumento: 50,
+    volatilidade: 25,
+    estado: 'RS',
+    fonte: 'IBGE',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
     id: 'milho-rs',
     nome: 'Milho',
     categoria: 'Grãos e Secos',
@@ -188,25 +242,61 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'trigo-rs',
-    nome: 'Trigo em Grão',
+    nome: 'Trigo para Farinha (Panificação)',
     categoria: 'Grãos e Secos',
     unidade: 'kg',
-    precoAtual: 1.50,
-    precoAnterior: 1.42,
-    variacaoDiaria: 0.1,
-    variacaoMensal: 5.6,
-    variacaoTrimestral: 8.9,
+    precoAtual: 1.65,
+    precoAnterior: 1.52,
+    variacaoDiaria: 0.2,
+    variacaoMensal: 8.5,
+    variacaoTrimestral: 12.4,
     tendencia: 'alta',
-    nivelRisco: 'moderado',
-    probabilidadeAumento: 65,
-    volatilidade: 40,
+    nivelRisco: 'alto',
+    probabilidadeAumento: 78,
+    volatilidade: 55,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'ovos-rs',
+    nome: 'Ovos',
+    categoria: 'Proteínas',
+    unidade: 'dz',
+    precoAtual: 5.60,
+    precoAnterior: 5.20,
+    variacaoDiaria: 0.5,
+    variacaoMensal: 7.7,
+    variacaoTrimestral: 10.2,
+    tendencia: 'alta',
+    nivelRisco: 'alto',
+    probabilidadeAumento: 75,
+    volatilidade: 50,
+    estado: 'RS',
+    fonte: 'CEPEA',
+    ultimaAtualizacao: '2026-03-18T08:03:58',
+  },
+  {
+    id: 'leite-rs',
+    nome: 'Leite',
+    categoria: 'Proteínas',
+    unidade: 'L',
+    precoAtual: 5.80,
+    precoAnterior: 5.40,
+    variacaoDiaria: 0.2,
+    variacaoMensal: 7.4,
+    variacaoTrimestral: 12.1,
+    tendencia: 'alta',
+    nivelRisco: 'alto',
+    probabilidadeAumento: 80,
+    volatilidade: 45,
     estado: 'RS',
     fonte: 'CEPEA',
     ultimaAtualizacao: '2026-03-18T08:03:58',
   },
   {
     id: 'batata-rs',
-    nome: 'Batata Inglesa',
+    nome: 'Batata Inglesa (Hortifruti 1)',
     categoria: 'Hortifruti',
     unidade: 'kg',
     precoAtual: 5.50,
@@ -224,7 +314,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'tomate-rs',
-    nome: 'Tomate Saladete',
+    nome: 'Tomate Saladete (Hortifruti 2)',
     categoria: 'Hortifruti',
     unidade: 'kg',
     precoAtual: 7.80,
@@ -242,7 +332,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'cebola-rs',
-    nome: 'Cebola Nacional',
+    nome: 'Cebola Nacional (Hortifruti 3)',
     categoria: 'Hortifruti',
     unidade: 'kg',
     precoAtual: 4.20,
@@ -260,7 +350,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'banana-rs',
-    nome: 'Banana Caturra',
+    nome: 'Banana Caturra (Hortifruti 4)',
     categoria: 'Hortifruti',
     unidade: 'kg',
     precoAtual: 4.50,
@@ -278,7 +368,7 @@ export const produtos: ProdutoMonitorado[] = [
   },
   {
     id: 'laranja-rs',
-    nome: 'Laranja Pera',
+    nome: 'Laranja Pera (Hortifruti 5)',
     categoria: 'Hortifruti',
     unidade: 'kg',
     precoAtual: 3.80,
@@ -292,42 +382,6 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 35,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'oleo-soja-pr',
-    nome: 'Oléo de soja',
-    categoria: 'Outros Insumos',
-    unidade: 'L',
-    precoAtual: 8.90,
-    precoAnterior: 7.80,
-    variacaoDiaria: 1.2,
-    variacaoMensal: 14.1,
-    variacaoTrimestral: 22.8,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 91,
-    volatilidade: 78,
-    estado: 'PR',
-    fonte: 'CEPEA/Esalq',
-    ultimaAtualizacao: '2026-03-18T08:03:58',
-  },
-  {
-    id: 'cafe-rs',
-    nome: 'Café Torrado e Moído',
-    categoria: 'Outros Insumos',
-    unidade: 'kg',
-    precoAtual: 52.40,
-    precoAnterior: 44.20,
-    variacaoDiaria: 1.8,
-    variacaoMensal: 18.6,
-    variacaoTrimestral: 28.4,
-    tendencia: 'alta',
-    nivelRisco: 'alto',
-    probabilidadeAumento: 93,
-    volatilidade: 85,
-    estado: 'RS',
-    fonte: 'CEPEA',
     ultimaAtualizacao: '2026-03-18T08:03:58',
   },
 ];
@@ -371,158 +425,102 @@ function gerarHistorico(
 }
 
 export const historicoPorProduto: Record<string, HistoricoPreco[]> = {
-  'carne-bovina-rs': gerarHistorico(28.0, 18, 1.2, 0.8),
-  'frango-rs': gerarHistorico(8.2, 18, 0.5, 0.5),
-  'arroz-rs': gerarHistorico(4.8, 18, 1.8, 1.2),
+  'arroz-parboilizado-rs': gerarHistorico(4.8, 18, 1.8, 1.2),
   'feijao-preto-rs': gerarHistorico(6.5, 18, 2.5, 1.5),
   'oleo-soja-pr': gerarHistorico(6.5, 18, 2.2, 1.5),
+  'carne-bovina-traseira-rs': gerarHistorico(28.0, 18, 1.2, 0.8),
+  'frango-rs': gerarHistorico(8.2, 18, 0.5, 0.5),
+  'carne-suina-sc': gerarHistorico(12.5, 18, 0.8, 0.6),
   'cafe-rs': gerarHistorico(35.0, 18, 2.8, 2.0),
-  'batata-rs': gerarHistorico(4.0, 18, 2.0, 3.0),
-  'tomate-rs': gerarHistorico(5.0, 18, 3.0, 4.0),
+  'acucar-rs': gerarHistorico(3.5, 18, 0.6, 0.4),
+  'macarrao-rs': gerarHistorico(4.8, 18, 0.7, 0.3),
+  'milho-rs': gerarHistorico(0.85, 18, 1.5, 1.0),
+  'trigo-rs': gerarHistorico(1.2, 18, 1.1, 0.7),
+  'ovos-rs': gerarHistorico(4.2, 18, 1.3, 0.9),
+  'leite-rs': gerarHistorico(4.5, 18, 1.4, 0.8),
+  'batata-rs': gerarHistorico(4.2, 18, 2.2, 1.8),
+  'tomate-rs': gerarHistorico(5.5, 18, 2.8, 2.5),
+  'cebola-rs': gerarHistorico(3.2, 18, 1.5, 1.2),
+  'banana-rs': gerarHistorico(3.5, 18, 1.2, 1.0),
+  'laranja-rs': gerarHistorico(3.0, 18, 0.8, 0.6),
 };
 
-// ─── PREVISÃO DE PREÇOS ───────────────────────────────────────────────────────
-
-export interface PrevisaoPreco {
-  produto: string;
-  precoAtual: number;
-  previsao3m: number;
-  previsao6m: number;
-  variacaoEsperada3m: number;
-  variacaoEsperada6m: number;
-  confianca: number; // 0-100
-}
-
-export const previsoes: PrevisaoPreco[] = [
-  { produto: 'Café Torrado e Moído', precoAtual: 52.40, previsao3m: 61.20, previsao6m: 68.50, variacaoEsperada3m: 16.8, variacaoEsperada6m: 30.7, confianca: 78 },
-  { produto: 'Oléo de soja', precoAtual: 8.90, previsao3m: 10.20, previsao6m: 11.40, variacaoEsperada3m: 14.6, variacaoEsperada6m: 28.1, confianca: 72 },
-  { produto: 'Feijão Preto', precoAtual: 8.50, previsao3m: 9.80, previsao6m: 10.50, variacaoEsperada3m: 15.3, variacaoEsperada6m: 23.5, confianca: 82 },
-  { produto: 'Arroz Parboilizado', precoAtual: 6.20, previsao3m: 6.80, previsao6m: 7.30, variacaoEsperada3m: 9.7, variacaoEsperada6m: 17.7, confianca: 85 },
-  { produto: 'Tomate Saladete', precoAtual: 7.80, previsao3m: 9.50, previsao6m: 8.20, variacaoEsperada3m: 21.8, variacaoEsperada6m: 5.1, confianca: 60 },
-  { produto: 'Batata Inglesa', precoAtual: 5.50, previsao3m: 6.40, previsao6m: 5.90, variacaoEsperada3m: 16.4, variacaoEsperada6m: 7.3, confianca: 65 },
-];
-
-// ─── ÍNDICES ECONÔMICOS ───────────────────────────────────────────────────────
+// ─── ÍNDICES ECONÔMICOS ──────────────────────────────────────────────────────
 
 export const indices: IndiceEconomico[] = [
   {
-    nome: 'IPCA Alimentação — Porto Alegre',
-    sigla: 'IPCA-POA',
-    valorAtual: 8.42,
-    variacaoMensal: 0.68,
-    variacaoAcumulada12m: 8.42,
+    nome: 'IPCA (Alimentos e Bebidas)',
+    sigla: 'IPCA-AB',
+    valorAtual: 0.85,
+    variacaoMensal: 0.12,
+    variacaoAcumulada12m: 6.24,
     periodo: 'Fev/2026',
   },
   {
-    nome: 'IPCA Alimentação — Florianópolis',
-    sigla: 'IPCA-FLN',
-    valorAtual: 7.85,
-    variacaoMensal: 0.55,
-    variacaoAcumulada12m: 7.85,
-    periodo: 'Fev/2026',
-  },
-  {
-    nome: 'IPCA Alimentação — Curitiba',
-    sigla: 'IPCA-CWB',
-    valorAtual: 8.10,
-    variacaoMensal: 0.62,
-    variacaoAcumulada12m: 8.10,
-    periodo: 'Fev/2026',
-  },
-  {
-    nome: 'IGP-M (FGV)',
+    nome: 'IGP-M',
     sigla: 'IGP-M',
-    valorAtual: 4.50,
-    variacaoMensal: 0.45,
-    variacaoAcumulada12m: 4.50,
+    valorAtual: 0.48,
+    variacaoMensal: -0.05,
+    variacaoAcumulada12m: 4.12,
     periodo: 'Fev/2026',
   },
   {
-    nome: 'FIPE Alimentação',
-    sigla: 'FIPE-Alim',
-    valorAtual: 7.20,
-    variacaoMensal: 0.72,
-    variacaoAcumulada12m: 7.20,
+    nome: 'Índice FIPE (Alimentação)',
+    sigla: 'FIPE-AL',
+    valorAtual: 0.72,
+    variacaoMensal: 0.08,
+    variacaoAcumulada12m: 5.85,
     periodo: 'Fev/2026',
   },
 ];
 
-// ─── ALERTAS ──────────────────────────────────────────────────────────────────
+// ─── ALERTAS DE INFLAÇÃO ─────────────────────────────────────────────────────
 
-export const alertas: AlertaInflacao[] = produtos.map(p => {
-  let tipo: AlertaInflacao['tipo'] = 'tendencia_alta';
-  let descricao = '';
-  
-  if (p.variacaoMensal > 15) {
-    tipo = 'aceleracao';
-    descricao = `Aceleração crítica de preços: ${p.variacaoMensal.toFixed(1)}% no mês. Oferta extremamente restrita no mercado regional.`;
-  } else if (p.variacaoMensal > 8) {
-    tipo = 'variacao_acima_indice';
-    descricao = `Variação de ${p.variacaoMensal.toFixed(1)}% no mês, superando significativamente os índices de inflação média.`;
-  } else if (p.volatilidade > 70) {
-    tipo = 'volatilidade_alta';
-    descricao = `Alta volatilidade detectada (${p.volatilidade}%). Preços instáveis devido a fatores climáticos ou sazonais.`;
-  } else {
-    descricao = `Tendência de alta sustentada de ${p.variacaoMensal.toFixed(1)}% no mês. Monitoramento preventivo recomendado.`;
-  }
+export const alertas: AlertaInflacao[] = [
+  {
+    id: 'alerta-1',
+    produto: 'Feijão Preto',
+    categoria: 'Grãos e Secos',
+    tipo: 'aceleracao',
+    descricao: 'Aceleração atípica no preço do feijão preto no RS (+15.2% no mês).',
+    percentualVariacao: 15.2,
+    tendenciaProjetada: 5.5,
+    nivelRisco: 'alto',
+    dataAlerta: '2026-03-15',
+    ativo: true,
+  },
+  {
+    id: 'alerta-2',
+    produto: 'Café',
+    categoria: 'Outros Insumos',
+    tipo: 'variacao_acima_indice',
+    descricao: 'Variação do café 12x acima do IPCA-AB no período.',
+    percentualVariacao: 18.6,
+    tendenciaProjetada: 8.2,
+    nivelRisco: 'alto',
+    dataAlerta: '2026-03-10',
+    ativo: true,
+  },
+  {
+    id: 'alerta-3',
+    produto: 'Tomate Saladete',
+    categoria: 'Hortifruti',
+    tipo: 'volatilidade_alta',
+    descricao: 'Alta volatilidade detectada em hortifruti devido a fatores climáticos.',
+    percentualVariacao: 20.0,
+    tendenciaProjetada: -12.0,
+    nivelRisco: 'alto',
+    dataAlerta: '2026-03-17',
+    ativo: true,
+  },
+];
 
-  return {
-    id: `alerta-${p.id}`,
-    produto: p.nome,
-    categoria: p.categoria,
-    tipo,
-    descricao,
-    percentualVariacao: p.variacaoMensal,
-    tendenciaProjetada: p.variacaoTrimestral * 1.5,
-    nivelRisco: p.nivelRisco,
-    dataAlerta: '2026-03-16',
-    ativo: p.nivelRisco !== 'baixo',
-  };
-});
+// ─── RANKING DE RISCO ────────────────────────────────────────────────────────
 
-// ─── RANKING DE RISCO ─────────────────────────────────────────────────────────
-
-export interface ItemRanking {
-  posicao: number;
-  produto: string;
-  categoria: Categoria;
-  nivelRisco: NivelRisco;
-  scoreRisco: number; // 0-100
-  probabilidadeAumento: number;
-  volatilidade: number;
-  variacaoTrimestral: number;
-  impactoCusto: 'alto' | 'medio' | 'baixo'; // impacto no custo da refeição
-  precoAtual: number;
-  unidade: string;
-  fonte: string;
-}
-
-export const rankingRisco: ItemRanking[] = produtos
-  .map(p => ({
-    produto: p.nome,
-    categoria: p.categoria,
-    nivelRisco: p.nivelRisco,
-    scoreRisco: Math.round((p.probabilidadeAumento * 0.4) + (p.volatilidade * 0.3) + (Math.min(100, p.variacaoTrimestral * 3) * 0.3)),
-    probabilidadeAumento: p.probabilidadeAumento,
-    volatilidade: p.volatilidade,
-    variacaoTrimestral: p.variacaoTrimestral,
-    impactoCusto: (p.categoria === 'Proteínas' || p.nome.includes('Arroz') || p.nome.includes('Feijão') || p.nome.includes('Oléo')) ? 'alto' : 'medio' as any,
-    precoAtual: p.precoAtual,
-    unidade: p.unidade,
-    fonte: p.fonte
-  }))
-  .sort((a, b) => b.scoreRisco - a.scoreRisco)
-  .map((item, idx) => ({ ...item, posicao: idx + 1 }));
-
-// ─── RESUMO EXECUTIVO ─────────────────────────────────────────────────────────
-
-export const resumoExecutivo = {
-  totalProdutosMonitorados: produtos.length,
-  produtosEmAlerta: alertas.filter(a => a.ativo).length,
-  variacaoMediaMensal: Math.round((produtos.reduce((acc, p) => acc + p.variacaoMensal, 0) / produtos.length) * 10) / 10,
-  variacaoMediaTrimestral: Math.round((produtos.reduce((acc, p) => acc + p.variacaoTrimestral, 0) / produtos.length) * 10) / 10,
-  ipca_alimentacao_media_sul: 8.12,
-  impactoCustoRefeicao: 12.5,
-  ultimaAtualizacao: '2026-03-18T08:03:58',
-  proximaAtualizacao: '2026-03-19T06:00:00',
-};
+export const rankingRisco = [
+  { produto: 'Café', score: 94, tendencia: 'alta' },
+  { produto: 'Tomate Saladete', score: 92, tendencia: 'alta' },
+  { produto: 'Óleo de Soja', score: 89, tendencia: 'alta' },
+  { produto: 'Feijão Preto', score: 88, tendencia: 'alta' },
+  { produto: 'Arroz Parboilizado', score: 85, tendencia: 'alta' },
+];
