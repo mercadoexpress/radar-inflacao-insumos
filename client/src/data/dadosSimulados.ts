@@ -76,7 +76,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 60,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'feijao-preto-rs',
@@ -94,7 +94,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 75,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'oleo-soja-pr',
@@ -112,7 +112,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 78,
     estado: 'PR',
     fonte: 'CEPEA/Esalq',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'carne-bovina-traseira-rs',
@@ -130,7 +130,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 65,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'frango-rs',
@@ -148,7 +148,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 42,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'carne-suina-sc',
@@ -166,7 +166,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 50,
     estado: 'SC',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'cafe-rs',
@@ -184,7 +184,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 85,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'acucar-rs',
@@ -202,7 +202,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 30,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'macarrao-rs',
@@ -220,7 +220,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 25,
     estado: 'RS',
     fonte: 'IBGE',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'milho-rs',
@@ -238,7 +238,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 65,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'trigo-rs',
@@ -256,7 +256,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 55,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'ovos-rs',
@@ -274,7 +274,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 50,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'leite-rs',
@@ -292,7 +292,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 45,
     estado: 'RS',
     fonte: 'CEPEA',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'batata-rs',
@@ -310,7 +310,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 80,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'tomate-rs',
@@ -328,7 +328,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 90,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'cebola-rs',
@@ -346,7 +346,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 55,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'banana-rs',
@@ -364,7 +364,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 45,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
   {
     id: 'laranja-rs',
@@ -382,7 +382,7 @@ export const produtos: ProdutoMonitorado[] = [
     volatilidade: 35,
     estado: 'RS',
     fonte: 'CEASA-RS',
-    ultimaAtualizacao: '2026-09-04T10:13:04',
+    ultimaAtualizacao: '2026-09-05T09:41:43',
   },
 ];
 
@@ -528,8 +528,8 @@ export const rankingRisco = [
 // ─── RESUMO EXECUTIVO ────────────────────────────────────────────────────────
 
 export const resumoExecutivo = {
-  ultimaAtualizacao: '2026-09-04T10:13:04',
-  proximaAtualizacao: '2026-09-05T06:00:00',
+  ultimaAtualizacao: '2026-09-05T09:41:43',
+  proximaAtualizacao: '2026-09-06T06:00:00',
   statusMercado: 'Pressão de Alta',
   variacaoMediaMensal: 8.4,
   riscoGeral: 'alto' as NivelRisco,
